@@ -9,7 +9,7 @@ interface BenefitItemProps {
 
 export function BenefitItem({ icon, title, description }: BenefitItemProps) {
   return (
-    <div className="benefit-item">
+    <div className="benefit-item flex items-start gap-4 p-4 rounded-lg hover:bg-primary/5 transition-colors">
       <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-primary/10 text-primary">
         {icon}
       </div>

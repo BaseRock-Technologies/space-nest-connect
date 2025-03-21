@@ -30,7 +30,13 @@ export function Header() {
             <a href="#benefits" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Benefits</a>
             <a href="#how-it-works" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">How It Works</a>
             <a href="#features" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Features</a>
-            <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 button-hover">
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="bg-primary hover:bg-primary/90 button-hover"
+              data-youform-open="7anwvtmj"
+              data-youform-position="center"
+            >
               Join Waitlist
             </Button>
           </nav>
@@ -78,6 +84,8 @@ export function Header() {
               size="sm" 
               className="w-full bg-primary hover:bg-primary/90 button-hover"
               onClick={() => setIsMobileMenuOpen(false)}
+              data-youform-open="7anwvtmj"
+              data-youform-position="center"
             >
               Join Waitlist
             </Button>
