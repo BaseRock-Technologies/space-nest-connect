@@ -1,6 +1,14 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
+
+// Add a type declaration to extend the Window interface
+declare global {
+  interface Window {
+    youform?: any;
+  }
+}
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
