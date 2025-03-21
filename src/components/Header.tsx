@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
@@ -13,7 +12,10 @@ declare global {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [youformLoaded, setYouformLoaded] = useState(false);
+
+  const handleJoinWaitlist = () => {
+    window.open('https://app.youform.com/forms/7anwvtmj', '_blank');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,24 +24,10 @@ export function Header() {
     
     window.addEventListener('scroll', handleScroll);
     
-    const checkYouformLoaded = () => {
-      setYouformLoaded(!!window.youform || !!document.querySelector('script[src="https://app.youform.com/widgets/widget.js"]'));
-    };
-    
-    checkYouformLoaded();
-    const timer = setTimeout(checkYouformLoaded, 2000);
-    
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
     };
   }, []);
-  
-  const handleJoinWaitlist = () => {
-    if (!youformLoaded) {
-      window.open('https://app.youform.com/forms/7anwvtmj', '_blank');
-    }
-  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-3 bg-white/80 backdrop-blur-md shadow-sm' : 'py-5 bg-transparent'}`}>
@@ -59,8 +47,6 @@ export function Header() {
               variant="default" 
               size="sm" 
               className="bg-primary hover:bg-primary/90 button-hover"
-              data-youform-open="7anwvtmj"
-              data-youform-position="center"
               onClick={handleJoinWaitlist}
             >
               Join Waitlist
@@ -112,8 +98,6 @@ export function Header() {
                 setIsMobileMenuOpen(false);
                 handleJoinWaitlist();
               }}
-              data-youform-open="7anwvtmj"
-              data-youform-position="center"
             >
               Join Waitlist
             </Button>
