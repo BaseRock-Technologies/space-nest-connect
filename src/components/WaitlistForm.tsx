@@ -22,7 +22,7 @@ export function WaitlistForm() {
             Join Waitlist
           </Button>
           <p className="mt-3 text-center text-sm text-muted-foreground">
-            Join 2,000+ early adopters waiting for access
+            Join early adopters waiting for access
           </p>
         </div>
       ) : (
