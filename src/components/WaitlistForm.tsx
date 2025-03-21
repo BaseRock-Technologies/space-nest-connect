@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,12 +8,30 @@ export function WaitlistForm() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [youformLoaded, setYouformLoaded] = useState(false);
   
   useEffect(() => {
+    // Check if script is already loaded
+    if (document.querySelector('script[src="https://app.youform.com/widgets/widget.js"]')) {
+      setYouformLoaded(true);
+      return;
+    }
+    
     // Load Youform widget script
     const script = document.createElement('script');
     script.src = 'https://app.youform.com/widgets/widget.js';
     script.async = true;
+    
+    script.onload = () => {
+      console.log('Youform script loaded');
+      setYouformLoaded(true);
+    };
+    
+    script.onerror = () => {
+      console.error('Failed to load Youform script');
+      setYouformLoaded(false);
+    };
+    
     document.body.appendChild(script);
     
     return () => {
@@ -42,6 +59,14 @@ export function WaitlistForm() {
       });
     }, 1000);
   };
+  
+  const handleJoinWaitlist = () => {
+    // If Youform script failed to load or popup doesn't work, open in new tab
+    if (!youformLoaded) {
+      window.open('https://app.youform.com/forms/7anwvtmj', '_blank');
+    }
+    // Otherwise, let the data attributes handle opening the popup
+  };
 
   return (
     <div className="max-w-md w-full mx-auto">
@@ -51,6 +76,7 @@ export function WaitlistForm() {
             data-youform-open="7anwvtmj" 
             data-youform-position="center"
             className="w-full bg-primary hover:bg-primary/90 button-hover py-6 text-base font-medium"
+            onClick={handleJoinWaitlist}
           >
             Join Waitlist
           </Button>
